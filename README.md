@@ -2,6 +2,10 @@
 
 A clean, responsive, and beginner-friendly calculator built with **HTML**, **CSS**, and **JavaScript**. This project was created to strengthen core front-end development skills through practical application, combining structure, styling, and logic into a functional web-based calculator.
 
+## You Can Check It Out Here:
+
+https://rogerroxo.github.io/simple-calculator/
+
 ## Overview
 
 The Simple Calculator is a lightweight web application designed to perform essential arithmetic operations through an intuitive and accessible interface. Built entirely with vanilla web technologies, this project emphasizes fundamental concepts of front-end development such as DOM manipulation, event handling, responsive design, and clean UI structure.
