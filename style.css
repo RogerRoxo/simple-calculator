@@ -1,0 +1,97 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    background: #fdf7ea;
+    font-family: sans-serif;
+    color: #000000;
+    font-size: 25px;
+}
+
+body {
+    display: flex;
+    justify-content: center; 
+    align-items: center;     
+    height: 100vh;
+}
+
+.calc {
+    width: 600px;
+    height: 800px;
+
+    display: flex;
+    justify-content: center; 
+    align-items: center;     
+    border: 1px solid black;
+    
+    box-shadow: 0 0 15px #3a3a3a;
+    border-radius: 80px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 100px 100px 100px 100px;
+    grid-template-rows: 100px 100px 100px 100px 100px 100px;
+    gap: 20px;
+}
+
+.display {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 1;
+
+    border-radius: 15px;
+    border: 2px solid black;
+
+    
+    display: flex;
+    justify-content: right; 
+    align-items: center;     
+    text-align: right;
+    padding: 15px;
+   
+}
+
+.display-text {
+    padding: 20px;
+    font-size: 40px;
+}
+
+.empt {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 2;
+}
+
+.button {
+
+    border-radius: 15px;
+
+}
+
+.button_great {
+    font-size: 40px;
+}
+
+@media screen and (max-width: 670px) {
+    
+    .calc {
+        width: 0;
+        height: 0;
+
+        border-radius: 80px;
+    }
+
+    .grid {
+        grid-template-columns: 18vw 18vw 18vw 18vw;
+        grid-template-rows: 12vh 12vh 12vh 12vh 12vh 12vh;
+        gap: 20px;
+    }
+
+    .display-text {
+        font-size: 4vh;
+    }
+
+}
