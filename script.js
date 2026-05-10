@@ -32,6 +32,10 @@ function addToAccount(button) {
         return 0;
     }
 
+    if (new_type_input == "operator" && last_input == '.') {
+        return 0;
+    }
+
     if (new_type_input == "operator" && account == ""){
         return 0;
     }
@@ -46,7 +50,7 @@ function addToAccount(button) {
         }
     }
 
-
+  
     if ((resultOn && valid_numbers.includes(new_input)) || account == "0"){
         account = "" 
     }
@@ -66,10 +70,6 @@ function addToAccount(button) {
         pointOn = true
     }
 
-    
-    
-
-    
 
     resultOn = false
     
@@ -95,9 +95,10 @@ function equalsAccount(){
         result = "error"
     }
     
-    account = ""
-    updateDisplay(Number.isInteger(result.toString()) ? result : parseFloat(result.toFixed(8).toString()))
+    account = result
+    updateDisplay(Number.isInteger(result) ? result.toString() : parseFloat(result.toFixed(8))).toString()
 
+    
     resultOn = true
 
     return 0
