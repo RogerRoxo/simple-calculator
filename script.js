@@ -4,25 +4,80 @@ const valid_operators = ['+', '-', '*', '/', '÷', '×']
 
 let display = document.getElementsByClassName("display-text")
 
-let resultOn = false
+let last_input = ""
+let last_type_input = ""
 
 let account = ""
+
+let resultOn = false
+let hasPoint = false
+
+let pointOn = true
 
 
 function addToAccount(button) {
 
     const new_input = button.innerText
+    const new_type_input = checkInput(new_input)
 
-    checkInput(new_input)
+    if (new_type_input == "none") {
+        return 0;
+    }
+
+    if (new_type_input == "operator" && last_type_input == "operator"){
+        return 0;
+    }
+
+    if (new_input == '.' && last_type_input == "operator") {
+        return 0;
+    }
+
+    if (new_type_input == "operator" && account == ""){
+        return 0;
+    }
+
+    if (account.length > 0) {
+        if (new_input == '.' && new_type_input == "operator") {
+            return 0;
+        }
+
+        if (new_input == '.' && last_input == '.'){
+            return 0;
+        }
+    }
+
 
     if ((resultOn && valid_numbers.includes(new_input)) || account == "0"){
-        account = ""    
+        account = "" 
     }
+
+    if (new_input == '.'){
+        if (pointOn == true){
+            pointOn = false
+        }
+        else {
+            return 0;
+        }
+        
+    }
+    
+
+    if(new_type_input == "operator") {
+        pointOn = true
+    }
+
+    
+    
+
+    
 
     resultOn = false
     
     account += new_input
     updateDisplay(account)
+
+    last_input = new_input
+    last_type_input = new_type_input
 
     return 0
 }
@@ -30,25 +85,26 @@ function addToAccount(button) {
 
 function equalsAccount(){
     let result
-    
+
     account = replaceAccountOperators()
 
     try {
         result = eval(account)
     }
     catch (error) {
-        result = "Error"
+        result = "error"
     }
     
-    account = result
-    updateDisplay(result.toString())
+    account = ""
+    updateDisplay(Number.isInteger(result.toString()) ? result : parseFloat(result.toFixed(8).toString()))
+
     resultOn = true
 
     return 0
 }
 
 
-function updateDisplay(value){
+function updateDisplay(value ){
     display[0].innerText = value
 }
 
@@ -62,16 +118,25 @@ function clearAccount() {
 function checkInput(input){
     if (!(valid_numbers.includes(input)  || valid_operators.includes(input))) {
         alert("Use only valid values.")
-        return 1
+        return "none"
     }
-    return 0
+
+    if (valid_numbers.includes(input)){
+        if (input == "."){
+        }
+        return "number"
+    }
+    else {
+        return "operator"
+    }
+
 }
 
 function replaceAccountOperators() {
     new_account = account
 
-    new_account = new_account.replace("×", "*")
-    new_account = new_account.replace("÷", "/")
+    new_account = new_account.replaceAll("×", "*")
+    new_account = new_account.replaceAll("÷", "/")
 
     return new_account
 }

@@ -8,12 +8,14 @@
     font-size: 25px;
 }
 
+
 body {
     display: flex;
     justify-content: center; 
     align-items: center;     
     height: 100vh;
 }
+
 
 .calc {
     width: 600px;
@@ -28,12 +30,14 @@ body {
     border-radius: 80px;
 }
 
+
 .grid {
     display: grid;
     grid-template-columns: 100px 100px 100px 100px;
     grid-template-rows: 100px 100px 100px 100px 100px 100px;
     gap: 20px;
 }
+
 
 .display {
     grid-column-start: 1;
@@ -53,10 +57,12 @@ body {
    
 }
 
+
 .display-text {
     padding: 20px;
     font-size: 40px;
 }
+
 
 .empt {
     grid-column-start: 1;
@@ -65,22 +71,23 @@ body {
     grid-row-end: 2;
 }
 
+
 .button {
-
     border-radius: 15px;
-
 }
+
 
 .button_great {
     font-size: 40px;
 }
+
+
 
 @media screen and (max-width: 670px) {
     
     .calc {
         width: 0;
         height: 0;
-
         border-radius: 80px;
     }
 
