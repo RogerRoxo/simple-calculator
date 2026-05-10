@@ -20,25 +20,15 @@ function addToAccount(button) {
     const new_input = button.innerText
     const new_type_input = checkInput(new_input)
 
-    if (new_type_input == "none") {
-        return 0;
-    }
+    if (new_type_input == "none") {return 0;}
 
-    if (new_type_input == "operator" && last_type_input == "operator"){
-        return 0;
-    }
+    if (new_type_input == "operator" && last_type_input == "operator"){return 0;}
 
-    if (new_input == '.' && last_type_input == "operator") {
-        return 0;
-    }
+    if (new_input == '.' && last_type_input == "operator") {return 0;}
 
-    if (new_type_input == "operator" && last_input == '.') {
-        return 0;
-    }
+    if (new_type_input == "operator" && last_input == '.') {return 0;}
 
-    if (new_type_input == "operator" && account == ""){
-        return 0;
-    }
+    if (new_type_input == "operator" && account == ""){return 0;}
 
     if (account.length > 0) {
         if (new_input == '.' && new_type_input == "operator") {
@@ -84,6 +74,12 @@ function addToAccount(button) {
 
 
 function equalsAccount(){
+
+    if (last_type_input == "operator"){return 0;}
+    if (last_input == '.'){return 0;}
+    
+    if (!valid_operators.some( op => account.includes(op))) {return 0}
+
     let result
 
     account = replaceAccountOperators()
@@ -95,8 +91,16 @@ function equalsAccount(){
         result = "error"
     }
     
+    if (result.toString().includes('.')){
+        pointOn = false
+    }
+
+    if (!Number.isInteger(result)){
+        result = parseFloat(result.toFixed(8))
+    }
+
     account = result
-    updateDisplay(Number.isInteger(result) ? result.toString() : parseFloat(result.toFixed(8))).toString()
+    updateDisplay(result.toString())
 
     
     resultOn = true
@@ -111,6 +115,7 @@ function updateDisplay(value ){
 
 
 function clearAccount() {
+    pointOn = true
     account = "0"
     updateDisplay("0")
 }
